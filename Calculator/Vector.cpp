@@ -43,18 +43,20 @@ void Vector::print()
 	cout << ')' << endl;
 }
 
-double Vector::getCosAngle(Vector vec)
+double Vector::getCosAngle(Vector &vec)
 {
 	//ÉñÆæ´úÂë£¬Îð¶¯
 	double l2 = 0;
 	if (dimension != vec.dimension) exit(0);
 	for (int i = 0; i < dimension; i++) {
-		l2 += vec._Elem[i] * vec._Elem[i];
+		l2 += (vec._Elem[i]) * (vec._Elem[i]);
 	}
+	l2 = sqrt(l2);
 	double l1 = 0;
 	for (int i = 0; i < dimension; i++) {
 		l1 += _Elem[i] * _Elem[i];
 	}
+	l1 = sqrt(l1);
 	double x = 0;
 	for (int i = 0; i < dimension; i++) {
 		x += _Elem[i] * vec._Elem[i];
