@@ -205,3 +205,62 @@ void Operate::FunctionBox(int c)
 		break;
 	}
 }
+
+void Operate::test(int c)
+{
+	int dim = 11;//维数
+	int x1[100] = { 2, -45, 32, -245, 0, 3442, 5, 0, 25, 56, -23 };//向量1
+	int x2[100] = { 8, 90, 55, -3, 0, 67, 790, 234, 804, 0, -687 };//向量2
+	Vector v1(11, x1);
+	Vector v2(11, x2);
+
+	List L1, L2;
+	L1.add(5, 1000); L1.add(-1, 828); L1.add(7, 7); L1.add(-89, 5); L1.add(-23, 3); L1.add(90, 2); L1.add(-235, 1); L1.add(754, 0);
+	L2.add(-34, 643); L2.add(554, 103); L2.add(-7, 7); L2.add(-89, 5); L2.add(243, 4); L2.add(-222, 2); L2.add(1, 0);
+	//v1.print(); v2.print(); L1.print(); L2.print();
+	switch (c)
+	{
+	case 1: {
+		v1.Add(v2);
+		v1.print();
+		break;
+	}
+	case 2: {
+		v1.Minus(v2);
+		v1.print();
+		break;
+	}
+	case 3: {
+		L1.add(L2);
+		L1.print();
+		break;
+	}
+	case 4: {
+		L1.minus(L2);
+		L1.print();
+		break;
+	}
+	case 5: {
+		cout << v1.getCosAngle(v2) << endl;
+		break;
+	}
+	case 6: {
+		int num;
+		cout << "请输入求导次数:" << endl;
+		cin >> num;
+		for (int i = 0; i < num; i++) {
+			L1.Derivation();
+		}
+		L1.print();
+		break;
+	}
+	case 7: {
+		List result;
+		L1.multiply(L2, result);
+		result.print();
+		break;
+	}
+	default:
+		break;
+	}
+}

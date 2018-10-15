@@ -9,5 +9,6 @@ public:
 	~Operate();
 	static void printMenu();
 	static void FunctionBox(int c);
+	static void test(int c);
 };
 

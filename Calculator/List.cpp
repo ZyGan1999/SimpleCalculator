@@ -45,12 +45,14 @@ void List::add(double coef, int expn) {
 
 void List::multiply(const List & poly, List & result)
 {
+	//逐个相乘
 	for (auto n = poly.header->_next; n != poly.tailer; n = n->_next) {
 		for (auto p = header->_next; p != tailer; p = p->_next) {
 			p->_coef *= n->_coef;
 			p->_expn += n->_expn;
 		}
 	}
+	//重新排序，合并同类项
 	for (auto p = header->_next; p != tailer; p = p->_next) {
 		result.addNode(*p);
 	}
@@ -58,10 +60,12 @@ void List::multiply(const List & poly, List & result)
 
 void List::Derivation()
 {
+	//系数与指数的变化
 	for (auto curP = header->_next; curP != tailer; curP = curP->_next) {
 		curP->_coef = curP->_coef * curP->_expn;
 		curP->_expn--;
 	}
+	//0和空表的判断
 	if (header->_next!=tailer && header->_next->_expn < 0) {
 		deleteNode(header->_next);
 	}
