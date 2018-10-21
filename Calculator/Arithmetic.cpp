@@ -39,7 +39,6 @@ void Arithmetic::print()
 
 double Arithmetic::getResult()
 {
-	print();
 	stack<double> tmp;
 	for (int i = 0; i < PostfixExpression.length(); i++) {
 		if (isOperator(PostfixExpression[i])) Calc(PostfixExpression[i], tmp);
