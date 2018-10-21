@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <string>
 #include <stack>
+#include <map>
+#include <iostream>
 using namespace std;
 class Arithmetic
 {
@@ -9,7 +11,8 @@ public:
 	Arithmetic();
 	Arithmetic(string InfixExp);
 	Arithmetic(string PostfixExp, int);
-	Arithmetic(Arithmetic & ari);
+	Arithmetic(const Arithmetic & ari);
+	void print();
 	double getResult();
 	~Arithmetic();
 private:
@@ -24,5 +27,7 @@ private:
 	}
 	double String2Num(string s);//×Ö·û´®×ªÊý×Ö
 	void Calc(char op, stack<double> & s);
+	void Infix2Postfix();
+	static map<char, int> opLevel;
 };
 

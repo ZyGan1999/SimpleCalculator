@@ -36,6 +36,9 @@
     <ClCompile Include="Arithmetic.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="ArithmeticX.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ListNode.h">
@@ -54,6 +57,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Arithmetic.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ArithmeticX.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

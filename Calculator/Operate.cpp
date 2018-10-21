@@ -1,5 +1,6 @@
 #include "Operate.h"
 #include <iostream>
+#include <string>
 using namespace std;
 
 Operate::Operate()
@@ -20,6 +21,8 @@ void Operate::printMenu()
 		<< "5.向量的夹角余弦值" << endl
 		<< "6.求多阶导数" << endl
 		<< "7.多项式的乘法" << endl
+		<< "8.四则运算表达式求值" << endl
+		<< "9.含未知数的表达式求值" << endl
 		<< "请选择一个操作" << endl;
 }
 
@@ -199,6 +202,29 @@ void Operate::FunctionBox(int c)
 		l1.multiply(l2, result);
 		cout << "计算结果是:";
 		result.print();
+		break;
+	}
+	case 8: {
+		string exp;
+		cout << "请输入四则运算表达式" << endl;
+		cin >> exp;
+		Arithmetic ari(exp);
+		cout << "运算结果是: " << ari.getResult() << endl;
+		break;
+	}
+	case 9: {
+		string exp;
+		string VarName;
+		double Val;
+		cout << "请输入变量名" << endl;
+		cin >> VarName;
+		cout << "请输入表达式" << endl;
+		cin >> exp;
+		cout << "请输入变量的值" << endl;
+		cin >> Val;
+		ArithmeticX ariX(exp, VarName);
+		auto ari = ariX.Assign(Val);
+		cout << "运算结果是: " << ari.getResult() << endl;
 		break;
 	}
 	default:

@@ -2,6 +2,7 @@
 #include "Vector.h"
 #include "Sequence.h"
 #include "List.h"
+#include "ArithmeticX.h"
 class Operate
 {
 public:

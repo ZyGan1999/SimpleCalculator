@@ -148,6 +148,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Arithmetic.cpp" />
+    <ClCompile Include="ArithmeticX.cpp" />
     <ClCompile Include="Calculator.cpp" />
     <ClCompile Include="List.cpp" />
     <ClCompile Include="ListNode.cpp" />
@@ -157,6 +158,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Arithmetic.h" />
+    <ClInclude Include="ArithmeticX.h" />
     <ClInclude Include="List.h" />
     <ClInclude Include="ListNode.h" />
     <ClInclude Include="Operate.h" />
