@@ -39,6 +39,7 @@ void Arithmetic::print()
 
 double Arithmetic::getResult()
 {
+	print();
 	stack<double> tmp;
 	for (int i = 0; i < PostfixExpression.length(); i++) {
 		if (isOperator(PostfixExpression[i])) Calc(PostfixExpression[i], tmp);
@@ -116,6 +117,20 @@ void Arithmetic::Infix2Postfix()
 	while (InfixExpression.find("(-") != string::npos) {
 		int pos = InfixExpression.find("(-");
 		InfixExpression.insert(pos + 1, 1, '0');
+	}
+	while (InfixExpression.find("*-") != string::npos) {
+		int pos = InfixExpression.find("*-");
+		InfixExpression.insert(pos + 1, "(0");
+		pos += 4;
+		while (isNumber(InfixExpression[pos]) || InfixExpression[pos] == '.') pos++;
+		InfixExpression.insert(pos, 1, ')');
+	}
+	while (InfixExpression.find("/-") != string::npos) {
+		int pos = InfixExpression.find("/-");
+		InfixExpression.insert(pos + 1, "(0");
+		pos += 4;
+		while (isNumber(InfixExpression[pos]) || InfixExpression[pos] == '.') pos++;
+		InfixExpression.insert(pos, 1, ')');
 	}
 	stack<char> operators;
 	operators.push('#');
