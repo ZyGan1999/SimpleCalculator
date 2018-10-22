@@ -33,12 +33,15 @@ Arithmetic::Arithmetic(const Arithmetic & ari)
 
 void Arithmetic::print()
 {
+	//输出函数
 	cout << "  Infix: " << InfixExpression << endl;
 	cout << "Postfix: " << PostfixExpression << endl;
 }
 
 double Arithmetic::getResult()
 {
+	//计算四则运算表达式
+	//通过后缀表达式
 	stack<double> tmp;
 	for (int i = 0; i < PostfixExpression.length(); i++) {
 		if (isOperator(PostfixExpression[i])) Calc(PostfixExpression[i], tmp);
@@ -63,6 +66,7 @@ Arithmetic::~Arithmetic()
 
 double Arithmetic::String2Num(string s)
 {
+	//将字符串转换为数字
 	double ret = 0.0;
 	int PointPosition = s.length();
 	for (int i = 0; i < s.length(); i++) {
@@ -78,6 +82,8 @@ double Arithmetic::String2Num(string s)
 
 void Arithmetic::Calc(char op, stack<double>& s)
 {
+	//将栈里的两个数字用一种符号运算
+	//结果入栈
 	double ret;
 	if (s.size() < 2) return;
 	double Val2 = s.top();
@@ -111,13 +117,16 @@ void Arithmetic::Calc(char op, stack<double>& s)
 void Arithmetic::Infix2Postfix()
 {
 	if (InfixExpression[0] == '-') {
+		//特判首位负号
 		InfixExpression = "0" + InfixExpression;
 	}
 	while (InfixExpression.find("(-") != string::npos) {
+		//解决符号问题
 		int pos = InfixExpression.find("(-");
 		InfixExpression.insert(pos + 1, 1, '0');
 	}
 	while (InfixExpression.find("*-") != string::npos) {
+		//解决变量赋值后的不合法问题
 		int pos = InfixExpression.find("*-");
 		InfixExpression.insert(pos + 1, "(0");
 		pos += 4;
@@ -125,6 +134,7 @@ void Arithmetic::Infix2Postfix()
 		InfixExpression.insert(pos, 1, ')');
 	}
 	while (InfixExpression.find("/-") != string::npos) {
+		//解决变量赋值后的不合法问题
 		int pos = InfixExpression.find("/-");
 		InfixExpression.insert(pos + 1, "(0");
 		pos += 4;
@@ -134,6 +144,7 @@ void Arithmetic::Infix2Postfix()
 	stack<char> operators;
 	operators.push('#');
 	for (int i = 0; i < InfixExpression.length(); i++) {
+		//扫描并转换
 		if (InfixExpression[i] == '(') operators.push(InfixExpression[i]);
 		else if (isNumber(InfixExpression[i])) {
 			int j = i;

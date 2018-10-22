@@ -22,6 +22,8 @@ ArithmeticX::ArithmeticX(const ArithmeticX & ax)
 
 Arithmetic ArithmeticX::Assign(double val)
 {
+	//赋值函数
+	//通过给变量赋值，得到一个普通的四则运算表达式
 	AssignedExpression = Expression;
 	string Val_str = to_string(val);
 	while (AssignedExpression.find(VariableName) != string::npos) {

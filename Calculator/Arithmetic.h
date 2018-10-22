@@ -9,9 +9,9 @@ class Arithmetic
 {
 public:
 	Arithmetic();
-	Arithmetic(string InfixExp);
+	Arithmetic(string InfixExp);//构造函数
 	Arithmetic(string PostfixExp, int);
-	Arithmetic(const Arithmetic & ari);
+	Arithmetic(const Arithmetic & ari);//复制构造函数
 	void print();
 	double getResult();
 	~Arithmetic();
@@ -27,7 +27,7 @@ private:
 	}
 	double String2Num(string s);//字符串转数字
 	void Calc(char op, stack<double> & s);
-	void Infix2Postfix();
-	static map<char, int> opLevel;
+	void Infix2Postfix();//前缀表达式转后缀表达式
+	static map<char, int> opLevel;//运算符的等级
 };
 
