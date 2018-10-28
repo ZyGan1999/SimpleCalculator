@@ -45,8 +45,8 @@ Arithmetic ArithmeticX::Assign(double val)
 
 void ArithmeticX::print()
 {
-	cout << " Exp: " << Expression << endl;
-	cout << "AExp: " << AssignedExpression << endl;
+	cout << Expression << endl;
+	//cout << "AExp: " << AssignedExpression << endl;
 }
 
 

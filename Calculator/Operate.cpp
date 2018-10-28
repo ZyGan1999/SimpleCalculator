@@ -1,6 +1,7 @@
 #include "Operate.h"
 #include <iostream>
 #include <string>
+#include <list>
 using namespace std;
 
 Operate::Operate()
@@ -23,6 +24,7 @@ void Operate::printMenu()
 		<< "7.多项式的乘法" << endl
 		<< "8.四则运算表达式求值" << endl
 		<< "9.含未知数的表达式求值" << endl
+		<< "10.操作自定义函数" << endl
 		<< "请选择一个操作" << endl;
 }
 
@@ -225,6 +227,59 @@ void Operate::FunctionBox(int c)
 		ArithmeticX ariX(exp, VarName);
 		auto ari = ariX.Assign(Val);
 		cout << "运算结果是: " << ari.getResult() << endl;
+		break;
+	}
+	case 10: {
+		cout << "可以开始输入指令了" << endl;
+		string instruction = "";
+		getline(cin, instruction);
+		getline(cin, instruction);
+		std::list<Function * > funcs;
+		
+		while (instruction != "ESC") {
+			string insName = instruction.substr(0, 3);
+			string input = "";
+			try{input = instruction.substr(4, instruction.length() - 4);}
+			catch (const exception& e) { ; }
+			if (insName == "DEF") {
+				auto f = Function::DEF(input);
+				funcs.push_back(f);
+			}
+			else if (insName == "RUN") {
+				string funcName = "";
+				string Val_str = "";
+				int curPos = 0;
+				while (input[curPos] != '(') {
+					funcName += input[curPos];
+					++curPos;
+				}
+				++curPos;
+				while (input[curPos] != ')') {
+					Val_str += input[curPos];
+					++curPos;
+				}
+				double val = Arithmetic::String2Num(Val_str);
+				for (auto it = funcs.begin(); it != funcs.end(); ++it) {
+					if ((*it)->getName() == funcName) {
+						cout << "结果是: ";
+						(*it)->RUN(val);
+						break;
+					}
+					if (it == funcs.end()) cout << "没有找到对应函数" << endl;
+				}
+			}
+			else if (insName == "WHO") {
+				for (auto i : funcs) {
+					cout << (*i).getName() << ' ';
+				}
+				cout << endl;
+			}
+			else {
+				cout << "没有对应指令" << endl;
+			}
+
+			getline(cin, instruction);
+		}
 		break;
 	}
 	default:

@@ -6,7 +6,8 @@ map<char, int> Arithmetic::opLevel = {
 	make_pair('+',1),
 	make_pair('-',1),
 	make_pair('*',2),
-	make_pair('/',2)
+	make_pair('/',2),
+	make_pair('^',3)
 };
 
 Arithmetic::Arithmetic()
@@ -108,6 +109,10 @@ void Arithmetic::Calc(char op, stack<double>& s)
 		ret = Val1 / Val2;
 		break;
 	}
+	case '^': {
+		ret = pow(Val1, Val2);
+		break;
+	}
 	default:
 		break;
 	}
@@ -136,6 +141,14 @@ void Arithmetic::Infix2Postfix()
 	while (InfixExpression.find("/-") != string::npos) {
 		//解决变量赋值后的不合法问题
 		int pos = InfixExpression.find("/-");
+		InfixExpression.insert(pos + 1, "(0");
+		pos += 4;
+		while (isNumber(InfixExpression[pos]) || InfixExpression[pos] == '.') pos++;
+		InfixExpression.insert(pos, 1, ')');
+	}
+	while (InfixExpression.find("^-") != string::npos) {
+		//解决变量赋值后的不合法问题
+		int pos = InfixExpression.find("^-");
 		InfixExpression.insert(pos + 1, "(0");
 		pos += 4;
 		while (isNumber(InfixExpression[pos]) || InfixExpression[pos] == '.') pos++;

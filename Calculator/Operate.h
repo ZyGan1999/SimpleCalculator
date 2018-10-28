@@ -3,6 +3,7 @@
 #include "Sequence.h"
 #include "List.h"
 #include "ArithmeticX.h"
+#include "Function.h"
 class Operate
 {
 public:
