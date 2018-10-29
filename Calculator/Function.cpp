@@ -27,6 +27,8 @@ void Function::print()
 
 Function * Function::DEF(const string & input)
 {
+	//扫描输入信息
+	//拆分字符串，用于生成实例
 	int le = input.length();
 	int curPos = 0;
 	string fn = "";
@@ -47,6 +49,7 @@ Function * Function::DEF(const string & input)
 
 void Function::RUN(double val)
 {
+	//赋值并运算
 	auto ari = this->ariX->Assign(val);
 	cout << ari.getResult() << endl;
 }

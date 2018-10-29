@@ -270,9 +270,10 @@ void Operate::FunctionBox(int c)
 			}
 			else if (insName == "WHO") {
 				for (auto i : funcs) {
-					cout << (*i).getName() << ' ';
+					//cout << (*i).getName() << ' ';
+					i->print();
 				}
-				cout << endl;
+				//cout << endl;
 			}
 			else {
 				cout << "没有对应指令" << endl;
