@@ -43,6 +43,15 @@ Arithmetic ArithmeticX::Assign(double val)
 	return ret;
 }
 
+void ArithmeticX::ChangeVarName(string vn)
+{
+	string oldvn = this->VariableName;
+	VariableName = vn;
+	while (this->Expression.find(oldvn) != string::npos) {
+		Expression.replace(Expression.find(oldvn), oldvn.length(), VariableName);
+	}
+}
+
 void ArithmeticX::print()
 {
 	cout << Expression << endl;

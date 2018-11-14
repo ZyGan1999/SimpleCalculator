@@ -1,5 +1,5 @@
 #include "Function.h"
-
+#include <list>
 
 Function::Function()
 {
@@ -25,7 +25,7 @@ void Function::print()
 	ariX->print();
 }
 
-Function * Function::DEF(const string & input)
+Function * Function::DEF(const string & input, std::list<Function * > & funcs)
 {
 	//扫描输入信息
 	//拆分字符串，用于生成实例
@@ -43,7 +43,22 @@ Function * Function::DEF(const string & input)
 	for (curPos += 2; curPos < le; ++curPos) {
 		exp += input[curPos];
 	}
+
+	for (auto i : funcs) {
+		while (exp.find(i->FuncName) != string::npos) {
+			int pos = exp.find(i->FuncName);
+			int num = 0;
+			while (exp[num + pos] != ')') num++;
+			auto CalledArix = new ArithmeticX(*(i->ariX));
+			if(vn != CalledArix->VariableName) CalledArix->ChangeVarName(vn);
+			string change = CalledArix->Expression;
+			change = '(' + change + ')';
+			exp.replace(pos, num + 1, change);
+		}
+	}
+
 	auto ret = new Function(exp, vn, fn);
+	ret->print();
 	return ret;
 }
 

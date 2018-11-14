@@ -242,7 +242,7 @@ void Operate::FunctionBox(int c)
 			try{input = instruction.substr(4, instruction.length() - 4);}
 			catch (const exception& e) { ; }
 			if (insName == "DEF") {
-				auto f = Function::DEF(input);
+				auto f = Function::DEF(input,funcs);
 				funcs.push_back(f);
 			}
 			else if (insName == "RUN") {
