@@ -125,6 +125,9 @@ void Arithmetic::Infix2Postfix()
 		//特判首位负号
 		InfixExpression = "0" + InfixExpression;
 	}
+	while (InfixExpression.find("e") != string::npos) {
+		InfixExpression.replace(InfixExpression.find("e"), 1, "*10^");
+	}
 	while (InfixExpression.find("(-") != string::npos) {
 		//解决符号问题
 		int pos = InfixExpression.find("(-");

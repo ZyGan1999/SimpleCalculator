@@ -28,7 +28,7 @@ private:
 	}
 	
 	void Calc(char op, stack<double> & s);
-	void Infix2Postfix();//前缀表达式转后缀表达式
+	void Infix2Postfix();//中缀表达式转后缀表达式
 	static map<char, int> opLevel;//运算符的等级
 };
 
