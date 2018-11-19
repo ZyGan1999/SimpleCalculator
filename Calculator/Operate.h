@@ -4,6 +4,7 @@
 #include "List.h"
 #include "ArithmeticX.h"
 #include "Function.h"
+#include "Matrix.h"
 class Operate
 {
 public:

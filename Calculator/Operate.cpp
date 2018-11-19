@@ -25,6 +25,12 @@ void Operate::printMenu()
 		<< "8.四则运算表达式求值" << endl
 		<< "9.含未知数的表达式求值" << endl
 		<< "10.操作自定义函数" << endl
+		<< "11.矩阵的加法" << endl
+		<< "12.矩阵的减法" << endl
+		<< "13.矩阵的乘法" << endl
+		<< "14.矩阵的转置" << endl
+		<< "15.方阵的行列式求值" << endl
+		<< "16.方阵的特征值" << endl
 		<< "请选择一个操作" << endl;
 }
 
@@ -281,6 +287,129 @@ void Operate::FunctionBox(int c)
 
 			getline(cin, instruction);
 		}
+		break;
+	}
+	case 11: {
+		double data1[100][100];
+		double data2[100][100];
+		int row, col;
+		cout << "请输入两个矩阵的行、列数" << endl;
+		cin >> row >> col;
+		cout << "请输入第一个矩阵" << endl;
+		for (int i = 0; i < row; ++i) {
+			for (int j = 0; j < col; ++j) {
+				cin >> data1[i][j];
+			}
+		}
+		cout << "请输入第二个矩阵" << endl;
+		for (int i = 0; i < row; ++i) {
+			for (int j = 0; j < col; ++j) {
+				cin >> data2[i][j];
+			}
+		}
+		Matrix mat1(data1, row, col);
+		Matrix mat2(data2, row, col);
+		mat1.add(mat2);
+		cout << "结果是:" << endl;
+		mat1.print();
+		break;
+	}
+	case 12: {
+		double data1[100][100];
+		double data2[100][100];
+		int row, col;
+		cout << "请输入两个矩阵的行、列数" << endl;
+		cin >> row >> col;
+		cout << "请输入第一个矩阵" << endl;
+		for (int i = 0; i < row; ++i) {
+			for (int j = 0; j < col; ++j) {
+				cin >> data1[i][j];
+			}
+		}
+		cout << "请输入第二个矩阵" << endl;
+		for (int i = 0; i < row; ++i) {
+			for (int j = 0; j < col; ++j) {
+				cin >> data2[i][j];
+			}
+		}
+		Matrix mat1(data1, row, col);
+		Matrix mat2(data2, row, col);
+		mat1.minus(mat2);
+		cout << "结果是:" << endl;
+		mat1.print();
+		break;
+	}
+	case 13: {
+		double data1[100][100];
+		double data2[100][100];
+		int row, col;
+		cout << "请输入第一个矩阵的行、列数" << endl;
+		cin >> row >> col;
+		cout << "请输入第一个矩阵" << endl;
+		for (int i = 0; i < row; ++i) {
+			for (int j = 0; j < col; ++j) {
+				cin >> data1[i][j];
+			}
+		}
+		cout << "请输入第二个矩阵" << endl;
+		for (int i = 0; i < col; ++i) {
+			for (int j = 0; j < row; ++j) {
+				cin >> data2[i][j];
+			}
+		}
+		Matrix mat1(data1, row, col);
+		Matrix mat2(data2, col, row);
+		auto rtn = mat1.multiply(mat2);
+		cout << "结果是:" << endl;
+		rtn->print();
+		break;
+	}
+	case 14: {
+		int row, col;
+		double data[100][100];
+		cout << "请输入矩阵的行、列数" << endl;
+		cin >> row >> col;
+		cout << "请输入矩阵" << endl;
+		for (int i = 0; i < row; i++) {
+			for (int j = 0; j < col; j++) {
+				cin >> data[i][j];
+			}
+		}
+		Matrix mat(data, row, col);
+		cout << "结果是:" << endl;
+		mat.Transpose();
+		mat.print();
+		break;
+	}
+	case 15: {
+		int rc;
+		double data[100][100];
+		cout << "请输入矩阵的行数" << endl;
+		cin >> rc;
+		cout << "请输入矩阵" << endl;
+		for (int i = 0; i < rc; i++) {
+			for (int j = 0; j < rc; j++) {
+				cin >> data[i][j];
+			}
+		}
+		Matrix mat(data, rc, rc);
+		cout << "结果是:" << endl << mat.CalcDeterminant() << endl;
+		break;
+	}
+	case 16: {
+		int rc;
+		double data[100][100];
+		cout << "请输入矩阵的行数" << endl;
+		cin >> rc;
+		cout << "请输入矩阵" << endl;
+		for (int i = 0; i < rc; i++) {
+			for (int j = 0; j < rc; j++) {
+				cin >> data[i][j];
+			}
+		}
+		Matrix mat(data, rc, rc);
+		cout << "结果是:" << endl;
+		mat.CalcEigenvalue();
 		break;
 	}
 	default:

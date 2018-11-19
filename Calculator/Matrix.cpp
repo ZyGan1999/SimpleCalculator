@@ -299,6 +299,4 @@ void Matrix::print()
 
 
 Matrix::~Matrix()
-{
-	if (data != nullptr) delete data;
-}
+{}
