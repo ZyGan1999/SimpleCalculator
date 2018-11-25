@@ -46,16 +46,18 @@ void List::add(double coef, int expn) {
 void List::multiply(const List & poly, List & result)
 {
 	//逐个相乘
-	for (auto n = poly.header->_next; n != poly.tailer; n = n->_next) {
-		for (auto p = header->_next; p != tailer; p = p->_next) {
-			p->_coef *= n->_coef;
-			p->_expn += n->_expn;
+	for (auto p = header->_next; p != tailer; p = p->_next) {
+		for (auto n = poly.header->_next; n != poly.tailer; n = n->_next) {
+			//p->_coef *= n->_coef;
+			//p->_expn += n->_expn;
+			ListNode node(p->_coef * n->_coef, p->_expn + n->_expn);
+			result.addNode(node);
 		}
 	}
 	//重新排序，合并同类项
-	for (auto p = header->_next; p != tailer; p = p->_next) {
-		result.addNode(*p);
-	}
+	//for (auto p = header->_next; p != tailer; p = p->_next) {
+	//	result.addNode(*p);
+	//}
 }
 
 void List::Derivation()
