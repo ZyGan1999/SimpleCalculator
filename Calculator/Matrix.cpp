@@ -79,7 +79,7 @@ Matrix * Matrix::multiply(const Matrix & mat)
 	auto rtn = new Matrix(this->rowNum, mat.colNum);
 	for (int ci = 0; ci < rtn->rowNum; ci++) {
 		for (int cj = 0; cj < rtn->colNum; cj++) {
-			int result = 0;
+			double result = 0;
 			for (int pos = 0; pos < this->rowNum; pos++) {
 				result += this->data[ci][pos] * mat.data[pos][cj];
 			}
@@ -91,7 +91,7 @@ Matrix * Matrix::multiply(const Matrix & mat)
 
 void Matrix::Transpose()
 {
-	int olddata[100][100] = { {0} };
+	double olddata[100][100] = { {0} };
 	for (int i = 0; i < rowNum; ++i) {
 		for (int j = 0; j < colNum; ++j) {
 			olddata[i][j] = data[i][j];
