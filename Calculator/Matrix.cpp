@@ -3,6 +3,8 @@
 #include <cmath>
 #include <iostream>
 #include <map>
+#include <vector>
+#include <algorithm>
 using namespace std;
 Matrix::Matrix()
 {
@@ -250,6 +252,96 @@ double Matrix::CalcEigenvalue()
 	}
 	cout << endl;
 	return 1;
+}
+double Matrix::CE()
+{
+	if (rowNum != colNum) return 0;
+
+	for (int i = 0; i < rowNum; ++i) {
+		for (int j = i; j < rowNum; ++j) {
+			this->data[i][j] = this->data[j][i];
+		}
+	}
+
+	Matrix tmp(rowNum, colNum);
+	for (int i = 0; i < rowNum; ++i) {
+		for (int j = 0; j < rowNum; ++j) {
+			tmp.data[i][j] = this->data[i][j];
+		}
+	}
+
+	cout << "转化后的矩阵为：" << endl;
+
+	tmp.print();
+	Matrix U(rowNum, rowNum);
+
+	int num = 0;
+
+	int p, q;
+	double max;
+	do {
+		max = 0;
+		for (int i = 0; i < rowNum; ++i) {
+			for (int j = 0; j < rowNum; ++j) {
+				if (i == j)continue;
+				if (fabs(tmp.data[i][j]) > fabs(max)) {
+					p = i;
+					q = j;
+					max = fabs(tmp.data[i][j]);
+				}
+			}
+		}
+
+		if (fabs(max) <= 0.01)break;
+
+		//cout << max << endl;
+
+		double tan2 = -2 * tmp.data[p][q] / (tmp.data[q][q] - tmp.data[p][p]);
+		double Y = atan(tan2);
+		double y = Y / 2;
+		double sinY = sin(y), cosY = cos(y);
+
+		//cout << "sss" << p << " " << q << endl;
+
+		for (int i = 0; i < rowNum; ++i) {
+			for (int j = 0; j < rowNum; ++j) {
+				if (i == j) U.data[i][j] = 1;
+				else U.data[i][j] = 0;
+			}
+		}
+
+		U.data[p][p] = cosY;
+		U.data[q][q] = cosY;
+		U.data[p][q] = -sinY;
+		U.data[q][p] = sinY;
+
+		Matrix U0 = U;
+		U.Transpose();
+		tmp = *(U.multiply(tmp));
+		tmp = *(tmp.multiply(U0));
+		//tmp.print();
+		//tmp = U.transpose() * tmp * U;
+
+		++num;
+
+	} while (fabs(max) > 0.01);
+	cout << "迭代次数: " << num << endl;
+	//cout << tmp << endl;
+	int k = 0;
+	vector<double> vc;
+	for (int i = 0; i < rowNum; ++i)vc.push_back(tmp.data[i][i]);
+	sort(vc.begin(), vc.end());
+	cout << "特征值从小到大为：" << endl;
+	for (auto k : vc) {
+		//if (nearlyZero(k))k = 0;
+		cout << k << endl;
+	}
+	cout << endl;
+	return 1;
+}
+void Matrix::CE2()
+{
+
 }
 	//
 

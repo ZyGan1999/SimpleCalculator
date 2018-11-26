@@ -11,6 +11,8 @@ public:
 	Matrix * multiply(const Matrix & mat);//矩阵乘法
 	void Transpose();//转置
 	double CalcEigenvalue();//计算特征值
+	double CE();
+	void CE2();
 	double CalcDeterminant();//计算行列式的值
 	Matrix * getAij(int i, int j);
 	void print();
